@@ -5,6 +5,7 @@ import com.woocommerce.android.network.ConnectionChangeReceiver
 import com.woocommerce.android.network.ConnectionChangeReceiver.ConnectionChangeEvent
 import com.woocommerce.android.push.NotificationHandler.NotificationsUnseenChangeEvent
 import com.woocommerce.android.tools.SelectedSite.SelectedSiteChangedEvent
+import com.woocommerce.android.util.WooLog
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.wordpress.android.fluxc.Dispatcher
@@ -58,8 +59,11 @@ class MainPresenter @Inject constructor(
         dispatcher.dispatch(AccountActionBuilder.newUpdateAccessTokenAction(UpdateTokenPayload(token)))
     }
 
-    override fun getNotificationByRemoteNoteId(remoteNoteId: Long): NotificationModel? =
-            notificationStore.getNotificationByRemoteId(remoteNoteId)
+    override fun getNotificationByRemoteNoteId(remoteNoteId: Long): NotificationModel? {
+        val notif = notificationStore.getNotificationByRemoteId(remoteNoteId)
+        WooLog.w(WooLog.T.NOTIFS, "getNotificationByRemoteNoteId isNull = ${notif == null}")
+        return notif
+    }
 
     override fun hasMultipleStores() = wooCommerceStore.getWooCommerceSites().size > 0
 

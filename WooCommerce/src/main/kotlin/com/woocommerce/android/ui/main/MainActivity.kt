@@ -36,6 +36,7 @@ import com.woocommerce.android.ui.prefs.AppSettingsActivity
 import com.woocommerce.android.ui.sitepicker.SitePickerActivity
 import com.woocommerce.android.util.WooAnimUtils
 import com.woocommerce.android.util.WooAnimUtils.Duration
+import com.woocommerce.android.util.WooLog
 import com.woocommerce.android.widgets.AppRatingDialog
 import com.woocommerce.android.widgets.WCPromoTooltip
 import com.woocommerce.android.widgets.WCPromoTooltip.Feature
@@ -120,13 +121,13 @@ class MainActivity : AppCompatActivity(),
         initFragment(savedInstanceState)
 
         // show the site picker promo if it hasn't been shown and the user has multiple stores
-        val promoShown = presenter.hasMultipleStores() && WCPromoDialog.showIfNeeded(this, PromoType.SITE_PICKER)
+        // val promoShown = presenter.hasMultipleStores() && WCPromoDialog.showIfNeeded(this, PromoType.SITE_PICKER)
 
         // show the app rating dialog if it's time and we didn't just show the promo
         AppRatingDialog.init(this)
-        if (!promoShown) {
+        /*if (!promoShown) {
             AppRatingDialog.showIfNeeded(this)
-        }
+        }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -256,6 +257,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun updateSelectedSite() {
+        WooLog.w(WooLog.T.NOTIFS, "updateSelectedSite called")
         loginProgressDialog?.apply { if (isShowing) { cancel() } }
 
         if (!selectedSite.exists()) {
