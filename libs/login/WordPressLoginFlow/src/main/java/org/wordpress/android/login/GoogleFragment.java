@@ -216,7 +216,7 @@ public class GoogleFragment extends Fragment implements ConnectionCallbacks, OnC
         mFinished = true;
         if (getActivity() != null) {
             AppLog.d(T.MAIN, "GOOGLE SIGNUP/LOGIN: finishing signup/login");
-            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commitAllowingStateLoss();
+            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
     }
 

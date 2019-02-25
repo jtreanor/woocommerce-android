@@ -49,6 +49,6 @@ class WooUpgradeRequiredDialog : DialogFragment() {
         }
         ft.addToBackStack(null)
         ft.add(this, TAG)
-        ft.commitAllowingStateLoss()
+        ft.commit()
     }
 }

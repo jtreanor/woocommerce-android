@@ -193,6 +193,6 @@ class AppSettingsActivity : AppCompatActivity(),
         }
         fragmentTransaction.replace(R.id.fragment_container, fragment, tag)
                 .addToBackStack(null)
-                .commitAllowingStateLoss()
+                .commit()
     }
 }

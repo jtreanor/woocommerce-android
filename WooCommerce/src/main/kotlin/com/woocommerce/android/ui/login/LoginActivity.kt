@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity(), LoginListener, GoogleListener, Prolog
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment, LoginPrologueFragment.TAG)
             .addToBackStack(null)
-            .commitAllowingStateLoss()
+            .commit()
     }
 
     override fun onPrologueFinished() {
@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity(), LoginListener, GoogleListener, Prolog
         if (shouldAddToBackStack) {
             fragmentTransaction.addToBackStack(null)
         }
-        fragmentTransaction.commitAllowingStateLoss()
+        fragmentTransaction.commit()
     }
 
     private fun getLoginEmailFragment(): LoginEmailFragment? {
@@ -308,7 +308,7 @@ class LoginActivity : AppCompatActivity(), LoginListener, GoogleListener, Prolog
             retainInstance = true
         }
         fragmentTransaction.add(loginGoogleFragment, LoginGoogleFragment.TAG)
-        fragmentTransaction.commitAllowingStateLoss()
+        fragmentTransaction.commit()
     }
 
     override fun helpMagicLinkRequest(email: String?) {

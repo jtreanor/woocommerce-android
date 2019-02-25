@@ -133,7 +133,7 @@ class MainNavigationView @JvmOverloads constructor(
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.container, fragment, navPos.getTag())
-                .commitAllowingStateLoss()
+                .commit()
     }
 
     private fun assignNavigationListeners(assign: Boolean) {
@@ -153,7 +153,7 @@ class MainNavigationView @JvmOverloads constructor(
             with(it.childFragmentManager) {
                 if (backStackEntryCount > 0) {
                     val firstEntry = getBackStackEntryAt(0)
-                    popBackStackImmediate(firstEntry.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    popBackStack(firstEntry.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     return true
                 }
             }
